@@ -5,13 +5,9 @@
   <parent>
     <groupId>com.yunc.upms</groupId>
     <artifactId>yunc-upms</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
-  <groupId>com.yunc.upms</groupId>
   <artifactId>yunc-upms-rpc-api</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>yunc-upms-rpc-api</name>
-  <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -22,5 +18,9 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+     <dependency>
+	  <groupId>com.yunc.upms</groupId>
+	  <artifactId>yunc-upms-common</artifactId>
+	</dependency>
   </dependencies>
 </project>
