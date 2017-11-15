@@ -74,7 +74,7 @@ public class MysqlGenerator {
 		dsc.setUsername("root");
 		dsc.setPassword("123456");
 //		dsc.setPassword("123456");
-		dsc.setUrl("jdbc:mysql://127.0.0.1:3306/video-app?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true");
+		dsc.setUrl("jdbc:mysql://127.0.0.1:3306/yunc?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true");
 //		dsc.setUrl("jdbc:mysql://127.0.0.1:3306/video-app?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true");
 		mpg.setDataSource(dsc);
 
@@ -105,14 +105,14 @@ public class MysqlGenerator {
 		// public User setName(String name) {this.name = name; return this;}
 		// strategy.setEntityBuliderModel(true);
 		
-		strategy.setInclude(new String[]{"security"});
+//		strategy.setInclude(new String[]{"security"});
 //		strategy.setExclude(new String[]{"user"});
 		mpg.setStrategy(strategy);
 
 		// 包配置
 		PackageConfig pc = new PackageConfig();
-		pc.setParent("com.yuke.video");// 自定义包路径
-		pc.setModuleName("api");//com.sboot.user.controller
+		pc.setParent("com.yunc.upms");// 自定义包路径
+//		pc.setModuleName("server");//com.sboot.user.controller
 		pc.setController("controller");// 这里是控制器包名，默认 web
 		mpg.setPackageInfo(pc);
 

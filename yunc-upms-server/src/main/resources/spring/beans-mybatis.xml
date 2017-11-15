@@ -61,8 +61,8 @@
 	<bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
         <property name="configLocation" value="classpath:xml/mybatis-config.xml" />
-		<property name="typeAliasesPackage" value="com.yuke.video.api.entity"/>
-		<property name="mapperLocations" value="classpath:com/yuke/video/api/mapper/xml/*Mapper.xml" />
+		<property name="typeAliasesPackage" value="com.yunc.upms.dao.entity"/>
+		<property name="mapperLocations" value="classpath:com/yunc/upms/dao/mapper/xml/*Mapper.xml" />
         <property name="plugins">
             <array>
                 <!-- 分页插件配置 -->
@@ -112,12 +112,12 @@
 
 
 	<!-- 自定义注入器 -->
-	<bean id="mySqlInjector" class="com.yuke.video.sqlinjector.MySqlInjector" />
+	<bean id="mySqlInjector" class="com.yunc.upms.server.sqlinjector.MySqlInjector" />
 
 	
 	<!-- MyBatis 动态扫描  -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.yuke.video.api.mapper" />
+		<property name="basePackage" value="com.yunc.upms.dao.mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
@@ -146,7 +146,7 @@
 	<!-- Spring aop事务管理 -->
 	<aop:config>
 		<aop:pointcut id="transactionPointcut"
-			expression="execution(* com.yuke.video.api.service..*.*(..))" />
+			expression="execution(* com.yunc.upms.rpc.service..*.*(..))" />
 		<aop:advisor pointcut-ref="transactionPointcut"	advice-ref="transactionAdvice" />
 	</aop:config>
 	

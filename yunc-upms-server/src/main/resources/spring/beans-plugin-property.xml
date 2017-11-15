@@ -8,7 +8,7 @@
 		<constructor-arg>
 			<map>
 				<entry key="property/application.properties">
-					<value>com.yuke.video.common.constants.ApplicationProperties</value>
+					<value>com.yunc.upms.common.constants.ApplicationProperties</value>
 				</entry>
 			</map>
 		</constructor-arg>

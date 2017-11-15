@@ -13,7 +13,7 @@
 
 	<!--   注解扫描包 , 多个写法:com.zsx.web.*,org.weixin.* (以完成bean创建和自动依赖注入的功能)  
  -->
-	<context:component-scan base-package="com.yuke.video" />
+	<context:component-scan base-package="com.yunc.upms" />
 	
 	 
 <!-- controller返回json str及中国乱码问题 -->
@@ -104,7 +104,7 @@
             <mvc:exclude-mapping path="/login/login"/>
             <mvc:exclude-mapping path="/user/json/doLogin"/>
             <mvc:exclude-mapping path="/*/api/*"/>
-        	<bean class="com.yuke.video.interceptor.LoginInterceptor"/>
+        	<bean class="com.yunc.upms.server.interceptor.LoginInterceptor"/>
 		</mvc:interceptor>
     </mvc:interceptors>
 </beans>  
