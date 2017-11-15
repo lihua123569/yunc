@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<title>个人中心-首页</title>
+<meta name="keywords" content="个人中心-首页" />
+<meta name="description" content="个人中心-首页" />
+ <link type="text/css" rel="stylesheet" href="/static/js/upload/style.css" /> 
+ <script type="text/javascript" src="/static/js/upload/uploadImg.js"></script> 
+<style type="text/css">
+.laypage_curr {
+	height: 36px !important;
+}
+
+.tit {
+	text-align: center;
+}
+
+.blacklist-list tbody {
+	border-bottom: 1px solid #ddd;
+}
+</style>
+
+</head>
+<body>
+	<h2 class="tit">视频添加</h2>
+
+	<div class="container">
+
+		<div class="form-group">
+			<label for="exampleInputEmail1">标题</label> 
+			<input type="text" class="form-control" id="title" placeholder="标题">
+		</div>
+		
+		<div class="form-group">
+			<label for="exampleInputPassword1">文件类型</label> 
+			<select	class="form-control" onchange="selectOnchang(this)" id="type" data-value="0">
+				<option selected="selected">视频</option>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="exampleInputPassword1">内容</label> 
+			<textarea type="text" class="form-control" id="video-content" placeholder="内容" ></textarea>
+		</div>
+		
+		 
+		
+		<div id="uploader" class="wu-example">
+		    <!--用来存放文件信息-->
+		    <div id="thelist" class="uploader-list"></div>
+		    <div class="btns">
+		        <div id="attach"></div>
+		        <input type="button" value="上传" id="upload"/> 
+		    </div>
+		</div>
+		
+		
+		<div id="uploader1" class="wu-example">
+		    <!--用来存放文件信息-->
+		    <div id="thelist1" class="uploader-list"></div>
+		    <div class="btns">
+		        <div id="multi"></div>
+		        <input type="button" value="上传" id="multiUpload"/> 
+		    </div>
+		</div>
+
+
+		<div style="text-align: center;">
+			<button class="btn btn-success btn-lg" id="addVideo"
+				style="width: 200px;">添加</button>
+		</div>
+	</div>
+	<script type="text/javascript"
+		src="http://img.uhaozu.com/zuhao/common/popup/popup.js"></script>
+
+	<script type="text/javascript">
+		function a() {
+			alert(0);
+			window.location.href = "/videoPic/videoList";
+		}
+
+		$("#addVideo").click(function() {
+
+			$.ajax({
+				type : 'POST',
+				url : "/videoPic/json/doAddVideo",
+				data : {
+					"title" : $("#title").val(),
+					"fileUrl" : $("#video-url").val(),
+					"waibuUrl" : $("#waibu-url").val(),
+					"type":$("#type").attr("data-value"),
+					"content":$("#video-content").val()
+				},
+				async : false,
+				success : function(result) {
+					result = eval("(" + result + ")");
+					if (result.responseCode == "0000") {
+						Alert("提醒", result.responseMsg);
+						window.location.href = "/videoPic/videoList";
+					} else {
+						Alert("提醒", result.responseMsg, false);
+					}
+
+				}
+			});
+
+		});
+
+		function selectOnchang(obj) {
+			var objs = obj;
+			console.log(objs.selectedIndex);
+			//获取被选中的option标签选项
+			$("#type").attr("data-value",objs.selectedIndex);
+		}
+	</script>
+</body>
+</html>

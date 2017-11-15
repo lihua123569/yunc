@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/views">
+    <excludes>
+        <!-- 指明满足“/exclude.jsp*”的页面，将被排除，不被装饰 -->
+        <pattern>*/api/*</pattern>
+        <pattern>*/ajax/*</pattern>
+        <pattern>*/json/*</pattern>
+        <pattern>*/dyview/*</pattern>
+        <pattern>*/mdyview/*</pattern>
+        <pattern>/static/*</pattern>
+        <pattern>*/html/*</pattern>
+        <pattern>*/orderWebApi/*</pattern>
+        <pattern>*/errorCompensation/*</pattern>
+        <pattern>*/pay/callback</pattern>
+        <pattern>*/pay/wxCallback</pattern>
+    </excludes>
+
+    <decorator name="default" page="decorators/default.html">
+        <pattern>*</pattern>
+        <pattern>*/registSuccess/*</pattern>
+        <pattern>/userAdded/errorCompensationSuccess/*</pattern>
+        <pattern>/userAdded/errorCompensation</pattern>
+        <pattern>/userPassword/resetPasswordStep1</pattern>
+        <pattern>/userPassword/resetPasswordStep2</pattern>
+        <pattern>/userBindAccount/*</pattern>
+        <pattern>/help/*</pattern>
+        <pattern>/notice/*</pattern>
+    </decorator>
+
+
+    <decorator name="user" page="decorators/decoratorUser.html">
+        <pattern>/login/login</pattern>
+        <pattern>/login/register</pattern>
+    </decorator>
+
+    <decorator name="nofooter" page="decorators/decoratorNoFooter.html">
+        <pattern>/download</pattern>
+        <pattern>/about/*</pattern>
+    </decorator>
+
+    <decorator name="usercenter" page="decorators/userCenter.html">
+     	<pattern>/upload/*</pattern>
+     	<pattern>/userComment/*</pattern>
+     	<pattern>*/videoPic/*</pattern>
+     	<pattern>*/pic/*</pattern>
+     	<pattern>*/guanggao/*</pattern>
+     	<pattern>*/jiugongge/*</pattern>
+     	<pattern>*/forum/*</pattern>
+        <pattern>*/usercenter/*</pattern>
+        <pattern>/goods/xh</pattern>
+        <pattern>/user/index</pattern>
+        <pattern>/userBase/index</pattern>
+        <pattern>/userBase/userAddedService</pattern>
+        <pattern>/userAdded/*</pattern>
+        <pattern>*/changeMobilePhoneOne</pattern>
+        <pattern>*/changeMobilePhoneTwo</pattern>
+        <pattern>*/modifyPassword</pattern>
+        <pattern>*/realAuth/*</pattern>
+        <pattern>*/resetPassword</pattern>
+        <pattern>*/sellerBlackList</pattern>
+        <pattern>*/setPayPassword</pattern>
+        <pattern>*/setPayPasswordSuccess</pattern>
+        <pattern>*/finance/details</pattern>
+        <pattern>*/withdraw/details</pattern>
+    </decorator>
+</decorators>
+

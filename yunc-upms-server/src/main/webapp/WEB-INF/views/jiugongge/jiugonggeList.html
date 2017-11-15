@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<title>个人中心-首页</title>
+<meta name="keywords" content="个人中心-首页" />
+<meta name="description" content="个人中心-首页" />
+	
+	<style type="text/css">
+		.laypage_curr {
+			height: 36px !important;
+		}
+		.tit{
+			text-align: center;
+		}
+		.videolist-list tbody{
+			border-bottom: 1px solid #ddd;
+		}
+	</style>
+	
+</head>
+<body>
+ <h2 class="tit">九宫格图片管理</h2>
+ 
+ <div class="form-inline">
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputEmail3">标题</label>
+    <input type="text" class="form-control" id="title_form" value="" placeholder="标题">
+    <input type="hidden" class="form-control" id="type_form" value="3" placeholder="标题">
+    
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputPassword3">文件分类</label>
+   	<select	class="form-control"  id="imgFirst_form"  >
+			<option selected="selected" value="1">视频九宫格图</option>
+			<option  value="2">图片九宫格图</option>
+			<option  value="3">交流1九宫格图</option>
+			<!-- <option  value="4">交流2九宫格图</option> -->
+			<option  value="5">在线交流九宫格图</option>
+	</select>
+  </div>
+  
+  <button type="submit" class="btn btn-default" id="searchBtn">查询 </button><span style="color:red;">当置顶时，app就可查看到</span>
+  <button class="btn btn-success" id="add_video" style="float: right;">九宫格图片添加</button>
+</div>
+
+
+
+<br />
+<div class="videolist-list">
+<script id="details_template" type="text/html">
+		
+				{{if responseCode=="0000"}}
+					<table class="table" border="0" cellspacing="0" cellpadding="0" id="blacklist_table">
+						<tr class="title">
+							<th width="190">文件标题</th>
+							<th width="250">文件分类</th>
+							<th width="250">内容</th>
+							<th width="250">文件地址</th>
+							<th width="250">列表展示图</th>
+							<th width="250">top</th>
+							<th width="160">创建时间</th>
+							<th width="120">操作</th>
+						</tr>
+					{{each object as element i}}
+						<tr data-id="1">
+							<td>
+								<div class="txt-box">
+									<p>{{if element.title==null}}无{{/if}}{{if element.title!=null}}{{element.title}}{{/if}}</p>
+								</div>
+							</td>
+							<td>
+								<div class="txt-box">
+									{{if element.imgFirst==1}}视频九宫格图{{/if}}
+									{{if element.imgFirst==2}}图片九宫格图{{/if}}
+									{{if element.imgFirst==3}}交流1九宫格图{{/if}}
+									{{if element.imgFirst==4}}交流2九宫格图{{/if}}
+									{{if element.imgFirst==5}}在线交流九宫格图{{/if}}
+									</p>
+								</div>
+							</td>
+							<td>
+								<div class="txt-box">
+									<p style="min-width:150px;">{{if element.content==null}}无{{/if}}{{if element.content!=null}}{{element.content}}{{/if}}</p>
+								</div>
+							</td>
+							<td>
+								<div class="txt-box">
+									<p style="min-width:150px;">{{if element.fileUrl==null}}无{{/if}}{{if element.fileUrl!=null}}{{element.fileUrl}}{{/if}}</p>
+								</div>
+							</td>
+							<td>
+								<div class="txt-box">
+									<p>{{if element.imgFirst==null}}无{{/if}}{{if element.imgFirst!=null}}{{element.imgFirst}}{{/if}}</p>
+								</div>
+							</td>
+							<td>
+								<div class="txt-box">
+									<p>{{if element.top==0}}未置顶{{/if}}
+										{{if element.top==1}}置顶{{/if}}</p>
+								</div>
+							</td>
+							<td>
+								<div class="txt-box">
+									<p>{{(element.createTime) | dateFormat : "yyyy-MM-dd hh:mm:ss" }}</p>
+								</div>
+							</td>
+							<td>
+								<div class="operation-area" style="min-width:150px;">
+{{if element.top==0}}
+ <a href="javascript:void(0)" data-value="{{element.id}}" class="pass-btn">top置顶</a>
+{{/if}}
+{{if element.top==1}}
+ <a href="javascript:void(0)" data-value="{{element.id}}" class="nopass-btn">top取消置顶</a>
+{{/if}}
+											  <!--<a href="/jiugongge/modifyJiugongge?id={{element.id}}" >编辑</a>-->
+										 <a href="javascript:void(0)" data-value="{{element.id}}" class="setb-btn">删除</a> 
+								</div>
+							</td>
+						</tr>
+					{{/each}}
+					</table>
+					{{if totalCount==0}}
+						<div class="no-order">
+							<em class="iconfont">&#xe608;</em>
+							<p>未查到相关信息</p>
+						</div>
+					{{/if}}
+			{{/if}}
+		</script>
+</div>
+<div class="com-page">
+	<div class="com-page-l" >
+		<script id="details_page" type="text/html">
+						{{if responseCode="0000" && totalCount>0}}
+							<span >共{{totalCount}}条</span><span id="perPage">10条/页</span>
+						{{/if}}	
+					</script>
+	</div>
+	<div class="page-con"   >
+		<div id="seller-per-page">
+		</div>
+	</div>
+</div>
+ 
+
+  
+<!-- 可选Js库 Start -->
+<script type="text/javascript" src="http://img.uhaozu.com/zuhao/common/slide.js"></script>
+<script type="text/javascript" src="http://img.uhaozu.com/zuhao/common/popup/popup.js"></script>
+<script type="text/javascript" src="http://img.uhaozu.com/zuhao/common/datepicker/WdatePicker.js"></script>
+<script type="text/javascript" src="/static/scripts/common/template.js"></script>
+<script type="text/javascript" src="/static/scripts/common/templateHelper.js"></script>
+<script type="text/javascript" src="http://img.uhaozu.com/zuhao/common/page/page.js"></script>
+<script type="text/javascript" src="/static/scripts/jiugongge/jiugonggeList.js?v=${jsVersion}"></script>
+</body>
+</html>

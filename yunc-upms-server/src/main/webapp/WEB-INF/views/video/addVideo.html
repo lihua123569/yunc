@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<title>个人中心-首页</title>
+<meta name="keywords" content="个人中心-首页" />
+<meta name="description" content="个人中心-首页" />
+ <link type="text/css" rel="stylesheet" href="/static/js/upload/style.css" /> 
+ <script type="text/javascript" src="/static/js/upload/uploadImg.js"></script> 
+<style type="text/css">
+.laypage_curr {
+	height: 36px !important;
+}
+
+.tit {
+	text-align: center;
+}
+
+.blacklist-list tbody {
+	border-bottom: 1px solid #ddd;
+}
+</style>
+
+</head>
+<body>
+	<h2 class="tit">视频添加</h2>
+
+	<div class="container">
+
+		<div class="form-group">
+			<label for="exampleInputEmail1">标题</label> 
+			<input type="text" class="form-control" id="title" placeholder="标题">
+			<input type="hidden" class="form-control" id="fileType" value="1">
+		</div>
+		
+		<div class="form-group" >
+			<label for="exampleInputPassword1">文件类型</label> 
+			<select	class="form-control" onchange="selectOnchang(this)" id="type" data-value="0" >
+				<option selected="selected">视频</option>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="exampleInputPassword1">内容</label> 
+			<textarea type="text" class="form-control" id="video-content" placeholder="内容" ></textarea>
+		</div>
+		
+		<div class="form-group">
+			<label for="exampleInputPassword1">视频图片地址</label> 
+			<input type="hidden" class="form-control"   id="video-url-list" placeholder="video url">
+			
+		<label for="exampleInputPassword1">列表图片 <span style="color:red;">视频和图片区，宽高比 1：1.5。尺寸大小 315：475</span>  </label> 
+		<div id="wrapper">
+        <div id="container">
+            <!--头部，相册选择和格式选择-->
+
+            <div id="uploader03">
+                <div class="queueList">
+                    <div id="dndArea" class="placeholder">
+                        <div id="filePickerImg03"></div>
+                        <p>或将照片拖到这里，单次最多可选300张</p>
+                    </div>
+                </div>
+                <div class="statusBar" style="display:none;">
+                    <div class="progress">
+                        <span class="text">0%</span>
+                        <span class="percentage"></span>
+                    </div><div class="info"></div>
+                    <div class="btns">
+                        <div id="filePicker03"></div><div class="uploadBtn">开始上传</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+			
+    </div>
+		
+		<div class="form-group">
+			<label for="exampleInputPassword1">视频播放地址</label> 
+			<input type="hidden" class="form-control"  id="video-url-detail" placeholder="video url">
+		</div>
+		
+    <div id="wrapper2">
+        <div id="container">
+            <!--头部，相册选择和格式选择-->
+
+            <div id="uploader22">
+                <div class="queueList">
+                    <div id="dndArea" class="placeholder">
+                        <div id="filePickerImg2"></div>
+                        <p>或将照片拖到这里，单次最多可选300张</p>
+                    </div>
+                </div>
+                <div class="statusBar" style="display:none;">
+                    <div class="progress">
+                        <span class="text">0%</span>
+                        <span class="percentage"></span>
+                    </div><div class="info"></div>
+                    <div class="btns">
+                        <div id="filePicker22"></div><div class="uploadBtn">开始上传</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+		
+		<div style="text-align: center;">
+			<button class="btn btn-success btn-lg" id="addVideo"
+				style="width: 200px;">添加</button>
+		</div>
+	</div>
+	<script type="text/javascript"
+		src="http://img.uhaozu.com/zuhao/common/popup/popup.js"></script>
+
+	<script type="text/javascript">
+		function a() {
+			alert(0);
+			window.location.href = "/videoPic/videoList";
+		}
+
+		$("#addVideo").click(function() {
+
+			$.ajax({
+				type : 'POST',
+				url : "/videoPic/json/doAddVideo",
+				data : {
+					"title" : $("#title").val(),
+					"fileUrl" : $("#video-url-list").val(),
+					"waibuUrl" : $("#video-url-detail").val(),
+					"type":$("#type").attr("data-value"),
+					"content":$("#video-content").val()
+				},
+				async : false,
+				success : function(result) {
+					result = eval("(" + result + ")");
+					if (result.responseCode == "0000") {
+						Alert("提醒", result.responseMsg);
+						window.location.href = "/videoPic/videoList";
+					} else {
+						Alert("提醒", result.responseMsg, false);
+					}
+
+				}
+			});
+
+		});
+
+		function selectOnchang(obj) {
+			var objs = obj;
+			console.log(objs.selectedIndex);
+			//获取被选中的option标签选项
+			$("#type").attr("data-value",objs.selectedIndex);
+		}
+	</script>
+</body>
+</html>

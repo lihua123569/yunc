@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<title>注册</title>
+<meta name="keywords" content="注册" />
+<meta name="description" content="注册" />
+    <link type="text/css" rel="stylesheet" href="http://img.uhaozu.com/zuhao/common/common.css"/>
+<!-- 通用Js库 Start -->
+<script type="text/javascript" src="http://img.uhaozu.com/zuhao/common/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="http://img.uhaozu.com/zuhao/common/common.js"></script>
+<link type="text/css" rel="stylesheet" href="http://img.uhaozu.com/zuhao/css/log-reg.css" />
+<style type="text/css">
+	.login-error {
+    left: 50px;
+    top: 278px;
+    text-align: center;
+    color: #ff6700;
+    margin-top: -35px;
+    height: 0px;
+    width: 99%;
+    
+}
+.com-btn-01{
+	margin-top: 28px;
+}
+.reg{
+	height: 100%;
+}
+</style>
+</head>
+<body>
+<!-- 登录注册主体 Start -->
+<div class="lr-box reg-bg">
+	<form class="reg-form">
+		<div class="reg">
+			<div class="reg-top">
+				<h2><span>注册</span><em>已有账号, <a href="/user/login">立即登录</a></em></h2>
+			</div>
+			<div class="reg-con">
+				
+				<div class="reg-form-item">
+					<label for="userName"><em class="iconfont">&#xe607;</em></label>
+					<input type="text" name="userName" id="userName" class="common-input clear-input p-must commit-form" placeholder="用户名" maxlength="20" datatype="/^(?![0-9]+$)[_0-9a-zA-Z]{6,20}$/,username"   onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" nullmsg="6-20个字符，可包括字母、下划线和数字，不能是纯数字"  errormsg="请输入正确的用户名" autocomplete="off" />
+					<i class="iconfont right-icon">&#xe610;</i>
+					<div class="reg-tips Validform_checktip" id="userName_msg" data-start='6-20个字符，可包括字母、下划线和数字，不能是纯数字' data-error="">6-20个字符，可包括字母、下划线和数字，不能是纯数字</div>
+				</div>
+				<div class="reg-form-item">
+					<label for="mobilePhone"><em class="iconfont">&#xe603;</em></label>
+					<input type="text" name="mobilePhone" id="mobilePhone" class="common-input clear-input p-must commit-form" placeholder="手机号码" maxlength="11" datatype="mobilePhone" nullmsg="请输入您的手机号" errormsg="请输入正确的手机号码" autocomplete="off" />
+					<i class="iconfont right-icon">&#xe610;</i>
+					<div class="reg-tips Validform_checktip" id="mobilePhone_msg" data-start='请输入您的手机号'>请输入您的手机号</div>
+				</div>
+				
+				<div class="reg-form-item reg-form-yzm clearfix">
+					<input type="hidden" name="ctoken" class="commit-form" id="ctoken" value="${ctoken}">
+					<input type="text" class="common-input clear-input p-must commit-form" name="captcha" id="captcha" maxlength="4" placeholder="图形验证码" datatype="*" nullmsg="请输入图形验证码" autocomplete="off" />
+					<div class="codeimg-box"><img src="/ajax/captcha/image?ctoken=${ctoken}" class="codeimg" alt="" onclick="this.src=('/ajax/captcha/image?ctoken=${ctoken}&salt='+(new Date()).getTime())"/></div>
+					<span class="code-change">看不清？<a href="javascript:void(0)" class="code-change-a">换一张</a></span>
+					<i class="iconfont clear-btn">&#xe601;</i>
+					<div class="reg-tips Validform_checktip" id="captcha_msg" data-start='按右图填写，不区分大小写'>按右图填写，不区分大小写</div>
+				</div>
+				
+				<div class="reg-form-item phone-code clearfix">
+					<label><em class="iconfont">&#xe60b;</em></label>
+					<input type="text" id="smsCode" name="smsCode" class="common-input clear-input commit-form" maxlength="6" placeholder="手机验证码" datatype="*" nullmsg="请输入手机验证码" autocomplete="off" />
+					<div class="phone-code-btn"><input type="button" value="获取短信验证码" class="com-btn-01 color03" id="getCode"></div>
+					<i class="iconfont clear-btn">&#xe601;</i>
+					<div class="reg-tips Validform_checktip" id="smsCode_msg" data-start='请输入手机验证码'>请输入手机验证码</div>
+				</div>
+				
+				<div class="reg-form-item">
+					<label><em class="iconfont">&#xe609;</em></label>
+					<input type="password" class="common-input clear-input" name="passwordReg"  id="password" min="6" maxlength="20" placeholder="密码" datatype="confirmPwd" nullmsg="请输入登录密码" autocomplete="off" />
+					<i class="iconfont right-icon">&#xe610;</i>
+					<div class="reg-tips Validform_checktip" data-start='6-20个字符，至少包含字母、数字'>6-20个字符，至少包含字母、数字</div>
+				</div>
+				
+				<div class="reg-form-item">
+					<label><em class="iconfont">&#xe609;</em></label>
+					<input type="password" class="common-input clear-input"   id="password2"  min="6" maxlength="20" placeholder="确认登录密码" recheck="passwordReg" datatype="/^(?![^a-zA-Z]+$)(?!\D+$).{6,20}$/" nullmsg="请再次输入登录密码" errormsg="您两次输入的密码不一致！" autocomplete="off" />
+					<i class="iconfont right-icon">&#xe610;</i>
+					<div class="reg-tips Validform_checktip" data-start='6-20个字符，至少包含字母、数字'>6-20个字符，至少包含字母、数字</div>
+				</div>
+			</div>
+			<div class="reg-bot">
+				<div class="login-error"></div>
+				<div class="reg-btn">
+				<a href="javascript:void(0)" class="com-btn-01 color01 reg-btn-a">立即注册</a></div>
+				<p class="reg-tips">点击“立即注册”，即表示您同意并愿意遵守<a href="javascript:void(0)" class="btna">《U号租用户服务协议》</a></p>
+			</div>
+		</div>
+	</form>
+</div>
+<!-- 登录注册主体 End -->
+<!-- 通用Js库 Start --> 
+<script type="text/javascript" src="http://img.uhaozu.com/zuhao/common/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="http://img.uhaozu.com/zuhao/common/common.js"></script>
+<!-- 通用Js库 End -->
+<!-- 可选Js库 Start -->
+<script type="text/javascript" src="http://img.uhaozu.com/zuhao/common/Validform-v5.3.2.min.js"></script>
+<script type="text/javascript" src="http://img.uhaozu.com/zuhao/common/popup/popup.js"></script>
+<script type="text/javascript" src="http://img.uhaozu.com/zuhao/common/md5.js"></script>
+<script type="text/javascript" src="/static/scripts/register.js?v=${jsVersion}"></script>
+<script type="text/javascript" src="http://pic.7881.com/zuhao/js/rulexy.js"></script>
+
+<!-- 可选Js库 Start -->
+</body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:task="http://www.springframework.org/schema/task"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+
+	http://www.springframework.org/schema/tx   
+    http://www.springframework.org/schema/tx/spring-tx-4.3.xsd 
+    
+	http://www.springframework.org/schema/context   
+    http://www.springframework.org/schema/context/spring-context-4.3.xsd
+
+
+	http://www.springframework.org/schema/task  
+	http://www.springframework.org/schema/task/spring-task-4.3.xsd">
+	
+	<task:annotation-driven/>  
+	
+	<context:property-placeholder location="classpath:property/*.properties" />
+	<!-- 注解扫描包 , 多个写法:com.zsx.web.*,org.weixin.* (以完成bean创建和自动依赖注入的功能) -->
+	<context:component-scan base-package="com.yuke.video.*" />
+
+	    <!-- 加载配置属性文件 -->
+	<bean  id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="locations">  
+           <list>  
+              <!-- 这里支持多种寻址方式：classpath和file -->  
+              <value>classpath:property/application.properties</value>  
+            </list>  
+        </property>  
+        <property name="nullValue" value="@null"></property>
+    </bean>
+    
+	<!-- 引入同文件夹下的redis属性配置文件 -->
+	  <import resource="classpath*:spring/beans-*.xml" />
+
+</beans>  

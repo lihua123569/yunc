@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<title>登录</title>
+<meta name="keywords" content="登录" />
+<meta name="description" content="登录" />
+    <link type="text/css" rel="stylesheet" href="http://img.uhaozu.com/zuhao/common/common.css"/>
+<!-- 通用Js库 Start -->
+<script type="text/javascript" src="http://img.uhaozu.com/zuhao/common/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="http://img.uhaozu.com/zuhao/common/common.js"></script>
+<link type="text/css" rel="stylesheet" href="http://img.uhaozu.com/zuhao/css/log-reg.css" />
+</style>
+</head>
+<body>
+<!-- 登录注册主体 Start -->
+<div class="lr-box login-bg" style="background: none;">
+	<form class="login-form" >
+		<div class="login">
+			<div class="login-top">
+				<h2><span>登录</span></h2>
+			</div>
+			<div class="login-con">
+				<div class="login-form-item">
+					<label for="userName"><em class="iconfont">&#xe60a;</em></label>
+					<input type="text" name="userName" id="userName" class="common-input clear-input commit-form" placeholder="用户名:adminApp" maxlength="16" datatype="*6-16" nullmsg="请输入账号" errormsg="请输入正确的账号" autocomplete="off" />
+					<i class="iconfont clear-btn">&#xe601;</i>
+				</div>
+				<div class="login-form-item">
+					<label for="password"><em class="iconfont">&#xe609;</em></label>
+					<input type="password" id="password" class="common-input clear-input" maxlength="20" placeholder="密码:123qwe" datatype="*6-20" nullmsg="请输入密码" errormsg="6-20个字符" autocomplete="off" />
+					<i class="iconfont clear-btn">&#xe601;</i>
+				</div>
+				 
+				<div class="login-btn"><a href="javascript:void(0)" class="com-btn-01 color01 login-btn-a">立即登录</a></div>
+				<div class="login-error"></div>
+			</div>
+			<div class="login-bot">
+				<label><input type="checkbox" checked="true" name="rememberMe" value="on" id="input-checkbox" class="input-checkbox commit-form" />记住我</label>
+				<em>|</em>
+				<!-- <a href="/userPassword/resetPasswordStep1">忘记密码？</a> -->
+			</div>
+		</div>
+	</form>
+</div>
+<!-- 登录注册主体 End -->
+<!-- 通用Js库 Start --> 
+<!-- 通用Js库 End -->
+<!-- 可选Js库 Start -->
+<script type="text/javascript" src="http://img.uhaozu.com/zuhao/common/Validform-v5.3.2.min.js"></script>
+<script type="text/javascript" src="http://img.uhaozu.com/zuhao/common/md5.js"></script>
+<script type="text/javascript">
+//登录验证
+var demo=$(".login-form").Validform({
+	tiptype:function(msg,o,cssctl){
+		var objtip=$(".login-error");
+		cssctl(objtip,o.type);
+		
+		if(o.type == 1){
+			$(".login-btn-a").text("正在提交...");
+		}
+	},
+	beforeSubmit:function(){
+		$(".login-error").text("");
+	},
+	ajaxPost:true
+});
+$(".login-btn-a").click(function(){
+	var check = demo.check();
+	if(check){
+		submit("/user/json/doLogin");
+	}
+	return false;
+});
+
+//--------回车提交事件开始---------------------//
+$("body").keydown(function(e) {
+	var curKey = e.which; 
+    if (curKey == "13") {//curKey=13是回车键
+    		var check = demo.check();
+    		if(check){
+    			$(".login-btn-a").text("正在提交...");
+    			submit("/user/json/doLogin");
+    		}
+    		return false;
+    }
+});
+//--------回车提交事件完毕---------------------//
+
+
+//表单提交
+function submit(url){
+    // 创建Form  
+/*     var form = $("<form></form>");  
+	var params= [];
+	$(".commit-form").each(function(){
+		params.push($('<input>', {name: $(this).attr("name"), type:'hidden', value: $(this).val()}))
+	});
+	params.push($('<input>', {name: 'password', type:'hidden',value: hex_md5($("#password").val())}));
+	form.append(params);  */
+	
+	$.ajax({
+		type:'POST',
+		url: url,//手机号是否存在
+		data: {"name":$("#userName").val(),"password":$("#password").val(),"ReturnURL":GetQueryString("ReturnURL")},
+		dataType: 'json',
+		success: function(data){
+			if(data.responseCode=="0000"){
+				window.location.href=data.object;
+			}else{
+				$(".login-error").removeClass("Validform_right");
+				if(data.responseCode=="1000" ){
+					$(".login-error").text("账号或密码错误");
+				}else{
+					$(".login-error").text(data.responseMsg);
+				}
+				$(".codeimg").trigger("click");
+				$(".login-btn-a").text("立即登录");
+			}
+		}
+	 });  
+}
+
+
+function GetQueryString(name)
+{
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>${title}</title>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+
+<link type="text/css" rel="stylesheet" href="/static/css/common.css" />
+<link type="text/css" rel="stylesheet" href="/static/plugins/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css"	href="/static/js/upload/webuploader.css" />
+<link type="text/css" rel="stylesheet" href="http://img.uhaozu.com/zuhao/css/per-center.css" />
+<!-- <link type="text/css" rel="stylesheet" href="/static/js/upload/style.css" /> -->
+
+<script type="text/javascript" src="/static/js/jquery-2.1.1.js"></script>
+<!-- <script type="text/javascript" src="/static/js/upload/webuploader.js"></script> -->
+<script type="text/javascript" src="/static/js/webuploader.js"></script>
+<script type="text/javascript" src="/static/plugins/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="http://img.uhaozu.com/zuhao/common/common.js"></script>
+	<!-- <script type="text/javascript" src="/static/js/upload/uploadImg.js"></script> -->
+<script type="text/javascript" src="/static/js/common.js"></script>
+
+${head}
+</head>
+<body>
+	<!-- 通用Js库 End -->
+	<#include '../common/toolbar.html'/>
+
+	<div style="display: flex; height: 1200px;  ">
+		<div style="  width: 210px; background-color: black; ">
+		<#assign menuurl=pageReq.getRequestUri() />
+	       	<ul class="nav nav-pills nav-stacked">
+		  		<li role="presentation" class="active"><a href="#">用户管理</a></li>
+		  		<li role="presentation" <#if menuurl?contains('/user/index')>class="bg-warning"</#if>><a href="/user/index">用户列表查询</a></li>
+			</ul>
+	       	<ul class="nav nav-pills nav-stacked">
+		  		<li role="presentation" class="active"><a href="#">视频管理</a></li>
+		  		<li role="presentation" <#if menuurl?contains('/videoPic/videoList')>class="bg-warning"</#if>><a href="/videoPic/videoList">视频列表</a></li>
+			</ul>
+	       <ul class="nav nav-pills nav-stacked">
+		  		<li role="presentation" class="active"><a href="#">图片管理</a></li>
+		  		<li role="presentation" <#if menuurl?contains('/pic/picList')>class="bg-warning"</#if>><a href="/pic/picList">图片列表</a></li>
+			</ul>
+	       	<ul class="nav nav-pills nav-stacked">
+		  		<li role="presentation" class="active"><a href="#">广告管理</a></li>
+		  		<li role="presentation" <#if menuurl?contains('/guanggao/guanggaoList')>class="bg-warning"</#if>><a href="/guanggao/guanggaoList">广告列表</a></li>
+			</ul>
+	       	<ul class="nav nav-pills nav-stacked">
+		  		<li role="presentation" class="active"><a href="#">九宫格管理</a></li>
+		  		<li role="presentation" <#if menuurl?contains('/jiugongge/jiugonggeList')>class="bg-warning"</#if>><a href="/jiugongge/jiugonggeList">九宫格列表</a></li>
+			</ul>
+	       	<ul class="nav nav-pills nav-stacked">
+		  		<li role="presentation" class="active"><a href="#">帖子管理</a></li>
+		  		<li role="presentation"<#if menuurl?contains('/forum/forumList')||menuurl?contains('/userComment/userCommentList')>class="bg-warning"</#if>><a href="/forum/forumList">帖子列表</a></li>
+			</ul>
+        </div>
+		 
+	 
+		
+		<div
+			style="flex:1;   margin-right: 10px; width: 400px; padding: 25px;">
+			${body}
+		</div>
+        
+        
+</div>
+
+ 
+<#include '../common/footerSimple.html'/>
+</body>
+</html>

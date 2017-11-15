@@ -1,0 +1,72 @@
+<div style="display: flex; height: 100px; padding: 10px; background-color: black;">
+
+	<div style=" width: 110px;">
+
+		<img alt="" src="/static/img/person_tx.png"
+			style="width: 75px; height: 75px; margin-left: 10px;">
+	</div>
+	<div style=" width: 300px; padding: 15px;">
+
+		<div>
+			<div style="font-size: 20px; font-weight: 900; color: white;">用户后台管理系统</div>
+			<div style="color:#ddffff;width: 400px;">User background management system</div>
+		</div>
+
+	</div>
+
+
+	<div
+		style="flex: 1;  margin-right: 10px; width: 400px; padding: 25px;">
+		<div style="float: right;">
+			<#if name?? && name!=""> <!-- 已登录 -->
+			<ul>
+				<li class="first" style="color: #fff;">您好，欢迎访问影视APP管理后台!</li>
+				<li class="last" style="color: #fff;"><a href="/userBase/index" class="org"
+					style="margin-right: 0px;">${name!""}</a> ，欢迎回来！<a
+					href="/user/logout">[ 退出 ]</a></li>
+			</ul>
+			<#else> <!-- 未登录 -->
+			<ul>
+				<li class="first" style="color: #fff;">您好，欢迎访问影视APP管理后台！</li>
+				<#assign returnUrl=pageReq.getRequestUri() />
+				<li class="last" style="color: #fff;"><a
+					href="/login/login?ReturnURL=${returnUrl!''}" rel="nofollow">安全登录</a>
+			</ul></#if>
+		</div>
+
+	</div>
+
+<!-- 共同模态框 -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <input type="hidden" class="form-control" id="id">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">用户名</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">手机号</label>
+            <input class="form-control" id="phone"></input>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" onclick="update()">提交</button>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+
+
+</div>

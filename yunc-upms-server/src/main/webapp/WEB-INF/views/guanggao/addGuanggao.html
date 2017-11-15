@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<title>个人中心-首页</title>
+<meta name="keywords" content="个人中心-首页" />
+<meta name="description" content="个人中心-首页" />
+ <link type="text/css" rel="stylesheet" href="/static/js/upload/style.css" /> 
+ <script type="text/javascript" src="/static/js/upload/uploadImg.js"></script> 
+<style type="text/css">
+.laypage_curr {
+	height: 36px !important;
+}
+
+.tit {
+	text-align: center;
+}
+
+.blacklist-list tbody {
+	border-bottom: 1px solid #ddd;
+}
+</style>
+
+</head>
+<body>
+	<h2 class="tit">广告添加</h2>
+
+	<div class="container">
+
+		<div class="form-group">
+			<label for="exampleInputEmail1">标题</label> 
+			<input type="text" class="form-control" id="title" placeholder="标题">
+		</div>
+		
+		<div class="form-group">
+			<label for="exampleInputPassword1">文件类型</label> 
+			<select	class="form-control" onchange="selectOnchang(this)" id="type" data-value="2">
+				<option selected="selected">广告</option>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="exampleInputPassword1">内容</label> 
+			<textarea type="text" class="form-control" id="video-content" placeholder="内容" ></textarea>
+		</div>
+		
+		<div class="form-group">
+			<label for="exampleInputPassword1">外部链接地址</label> 
+			<input type="text" class="form-control"  id="waibu-url" placeholder="video url">
+		</div>
+		
+		<div class="form-group">
+			<!-- <label for="exampleInputPassword1">广告地址 <span style="color:red;"> 广告，宽高比 3：1。尺寸大小 720：240</span> </label>  -->
+			<input type="hidden" class="form-control"   id="video-url-detail" placeholder="video url">
+		</div>
+	<div class="form-group">
+		<label for="exampleInputPassword1">广告图片<span style="color:red;">广告，宽高比 3：1。尺寸大小 720：240</span></label> 
+ 		<div id="wrapper2">
+        <div id="container">
+            <!--头部，相册选择和格式选择-->
+
+            <div id="uploader22">
+                <div class="queueList">
+                    <div id="dndArea" class="placeholder">
+                        <div id="filePickerImg2"></div>
+                        <p>或将照片拖到这里，单次最多可选300张</p>
+                    </div>
+                </div>
+                <div class="statusBar" style="display:none;">
+                    <div class="progress">
+                        <span class="text">0%</span>
+                        <span class="percentage"></span>
+                    </div><div class="info"></div>
+                    <div class="btns">
+                        <div id="filePicker22"></div><div class="uploadBtn">开始上传</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+		</div>
+		<div style="text-align: center;">
+			<button class="btn btn-success btn-lg" id="addVideo"
+				style="width: 200px;">添加</button>
+		</div>
+	</div>
+	<script type="text/javascript"
+		src="http://img.uhaozu.com/zuhao/common/popup/popup.js"></script>
+
+	<script type="text/javascript">
+		function a() {
+			alert(0);
+			window.location.href = "/guanggao/guanggaoList";
+		}
+
+		$("#addVideo").click(function() {
+
+			$.ajax({
+				type : 'POST',
+				url : "/guanggao/json/doAddGuanggao",
+				data : {
+					"title" : $("#title").val(),
+					"fileUrl" : $("#video-url-detail").val(),
+					"waibuUrl" : $("#waibu-url").val(),
+					"type":$("#type").attr("data-value"),
+					"content":$("#video-content").val()
+				},
+				async : false,
+				success : function(result) {
+					result = eval("(" + result + ")");
+					if (result.responseCode == "0000") {
+						Alert("提醒", result.responseMsg);
+						window.location.href = "/guanggao/guanggaoList";
+					} else {
+						Alert("提醒", result.responseMsg, false);
+					}
+
+				}
+			});
+
+		});
+
+		function selectOnchang(obj) {
+			var objs = obj;
+			console.log(objs.selectedIndex);
+			//获取被选中的option标签选项
+			$("#type").attr("data-value",objs.selectedIndex);
+		}
+	</script>
+</body>
+</html>
