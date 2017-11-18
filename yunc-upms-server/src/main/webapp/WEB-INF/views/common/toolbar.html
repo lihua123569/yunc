@@ -1,28 +1,29 @@
-<div style="display: flex; height: 100px; padding: 10px; background-color: black;">
+<div
+	style="display: flex; height: 100px; padding: 10px; background-color: black;">
 
-	<div style=" width: 110px;">
+	<div style="width: 110px;">
 
 		<img alt="" src="/static/img/person_tx.png"
 			style="width: 75px; height: 75px; margin-left: 10px;">
 	</div>
-	<div style=" width: 300px; padding: 15px;">
+	<div style="width: 300px; padding: 15px;">
 
 		<div>
 			<div style="font-size: 20px; font-weight: 900; color: white;">用户后台管理系统</div>
-			<div style="color:#ddffff;width: 400px;">User background management system</div>
+			<div style="color: #ddffff; width: 400px;">User background
+				management system</div>
 		</div>
 
 	</div>
 
 
-	<div
-		style="flex: 1;  margin-right: 10px; width: 400px; padding: 25px;">
+	<div style="flex: 1; margin-right: 10px; width: 400px; padding: 25px;">
 		<div style="float: right;">
 			<#if name?? && name!=""> <!-- 已登录 -->
 			<ul>
 				<li class="first" style="color: #fff;">您好，欢迎访问影视APP管理后台!</li>
-				<li class="last" style="color: #fff;"><a href="/userBase/index" class="org"
-					style="margin-right: 0px;">${name!""}</a> ，欢迎回来！<a
+				<li class="last" style="color: #fff;"><a href="/userBase/index"
+					class="org" style="margin-right: 0px;">${name!""}</a> ，欢迎回来！<a
 					href="/user/logout">[ 退出 ]</a></li>
 			</ul>
 			<#else> <!-- 未登录 -->
@@ -36,37 +37,167 @@
 
 	</div>
 
-<!-- 共同模态框 -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <input type="hidden" class="form-control" id="id">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">用户名</label>
-            <input type="text" class="form-control" id="name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="control-label">手机号</label>
-            <input class="form-control" id="phone"></input>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary" onclick="update()">提交</button>
-      </div>
-    </div>
-  </div>
-</div>
+	<!-- 共同模态框 -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="exampleModalLabel">New message</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<input type="hidden" class="form-control" id="id">
+						</div>
+						<div class="form-group">
+							<label for="recipient-name" class="control-label">用户名</label> <input
+								type="text" class="form-control" id="name">
+						</div>
+						<div class="form-group">
+							<label for="message-text" class="control-label">手机号</label> <input
+								class="form-control" id="phone"></input>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" onclick="update()">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ztree模态框 -->
+	<link rel="stylesheet"
+		href="/static/plugins/zTree/css/zTreeStyle/zTreeStyle.css"
+		type="text/css">
+	<script type="text/javascript"
+		src="/static/plugins/zTree/js/jquery.ztree.core.js"></script>
+	<script type="text/javascript"
+		src="/static/plugins/zTree/js/jquery.ztree.excheck.js"></script>
+
+	<SCRIPT type="text/javascript">
+		var setting = {
+			/* async : {
+				enable : true,
+				url : "/upmsPermission/json/lists",
+				autoParam : [ "id=1" ],
+				otherParam : {
+					"chk" : "chk"
+				},
+				dataFilter : dataFilter 
+			}, */
+			check : {
+				enable : true,
+				autoCheckTrigger : true,
+				// 勾选关联父，取消关联子
+				chkboxType : {
+					"Y" : "p",
+					"N" : "s"
+				}
+			}/* ,
+			data : {
+				simpleData : {
+					enable : true
+				}
+			},
+			callback : {
+				onCheck : onCheck,
+				onAsyncSuccess : onAsyncSuccess
+			} */
+		};
+		/* function dataFilter(treeId, parentNode, childNodes) {
+			if (parentNode.checkedEx === true) {
+				for (var i = 0, l = childNodes.length; i < l; i++) {
+					childNodes[i].checked = parentNode.checked;
+					childNodes[i].halfCheck = false;
+					childNodes[i].checkedEx = true;
+				}
+			}
+			return childNodes.info;
+		}
+		function onCheck(event, treeId, treeNode) {
+			cancelHalf(treeNode)
+			treeNode.checkedEx = true;
+		}
+		function onAsyncSuccess(event, treeId, treeNode, msg) {
+			cancelHalf(treeNode);
+		}
+		function cancelHalf(treeNode) {
+			if (treeNode.checkedEx)
+				return;
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			treeNode.halfCheck = false;
+			zTree.updateNode(treeNode);
+		}
+ */
+		var zNodes = [ {
+			id : 1,
+			pId : 0,
+			name : "权限管理系统",
+			halfCheck : true,
+			isParent : true
+		} ];
  
+ 		
+ 		$.ajax({
+ 			type: 'POST',
+ 			url:"/upmsPermission/json/lists",
+ 			async: false,
+ 			success:function(result){
+ 				if(result.responseCode =="0000"){
+ 					zNodes = result.info;
+ 				}
+ 				
+ 	    }});
+ 		
+ 		var treeObj;
+		$(document).ready(function() {
+			treeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+			treeObj.expandAll(true);
+		});
+
+		function getNodes() {
+			var nodes = treeObj.getChangeCheckedNodes();
+			$.each(nodes, function(i, item) {
+				alert("name:" + item.name + "id:" + item.id + "pid:" + item.pid
+						+ "checked:" + item.checked);
+
+			});
+		};
+		
+		 
+	
+	</SCRIPT>
+	<div class="modal fade" id="ztreeModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="exampleModalLabel">角色权限</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<ul id="treeDemo" class="ztree"></ul>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" onclick="update()">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 
 </div>

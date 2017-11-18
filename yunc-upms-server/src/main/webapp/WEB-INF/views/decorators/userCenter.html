@@ -30,29 +30,39 @@ ${head}
 		<div style="  width: 210px; background-color: black; ">
 		<#assign menuurl=pageReq.getRequestUri() />
 	       	<ul class="nav nav-pills nav-stacked">
-		  		<li role="presentation" class="active"><a href="#">用户管理</a></li>
-		  		<li role="presentation" <#if menuurl?contains('/user/index')>class="bg-warning"</#if>><a href="/user/index">用户列表查询</a></li>
+		  		<li role="presentation" class="active"><a href="#">首页</a></li>
 			</ul>
 	       	<ul class="nav nav-pills nav-stacked">
-		  		<li role="presentation" class="active"><a href="#">视频管理</a></li>
-		  		<li role="presentation" <#if menuurl?contains('/videoPic/videoList')>class="bg-warning"</#if>><a href="/videoPic/videoList">视频列表</a></li>
-			</ul>
-	       <ul class="nav nav-pills nav-stacked">
-		  		<li role="presentation" class="active"><a href="#">图片管理</a></li>
-		  		<li role="presentation" <#if menuurl?contains('/pic/picList')>class="bg-warning"</#if>><a href="/pic/picList">图片列表</a></li>
-			</ul>
-	       	<ul class="nav nav-pills nav-stacked">
-		  		<li role="presentation" class="active"><a href="#">广告管理</a></li>
-		  		<li role="presentation" <#if menuurl?contains('/guanggao/guanggaoList')>class="bg-warning"</#if>><a href="/guanggao/guanggaoList">广告列表</a></li>
+		  		<li role="presentation" class="active"><a href="#">系统组织管理</a></li>
+		  		<li role="presentation" <#if menuurl?contains('/videoPic/videoList')>class="bg-warning"</#if>>
+		  			<a href="/videoPic/videoList">系统管理</a>
+		  		</li>
+		  		<li role="presentation" <#if menuurl?contains('/videoPic/videoList')>class="bg-warning"</#if>>
+		  			<a href="/videoPic/videoList">组织管理</a>
+		  		</li>
 			</ul>
 	       	<ul class="nav nav-pills nav-stacked">
-		  		<li role="presentation" class="active"><a href="#">九宫格管理</a></li>
-		  		<li role="presentation" <#if menuurl?contains('/jiugongge/jiugonggeList')>class="bg-warning"</#if>><a href="/jiugongge/jiugonggeList">九宫格列表</a></li>
+		  		<li role="presentation" class="active"><a href="#">角色用户管理</a></li>
+		  		<li role="presentation" <#if menuurl?contains('/upmsUser/index')>class="bg-warning"</#if>>
+		  			<a href="/upmsUser/index">用户管理</a>
+		  		</li>
+		  		<li role="presentation" <#if menuurl?contains('/videoPic/videoList')>class="bg-warning"</#if>>
+		  			<a href="/videoPic/videoList">角色管理</a>
+		  		</li>
 			</ul>
 	       	<ul class="nav nav-pills nav-stacked">
-		  		<li role="presentation" class="active"><a href="#">帖子管理</a></li>
-		  		<li role="presentation"<#if menuurl?contains('/forum/forumList')||menuurl?contains('/userComment/userCommentList')>class="bg-warning"</#if>><a href="/forum/forumList">帖子列表</a></li>
+		  		<li role="presentation" class="active"><a href="#">权限资源管理</a></li>
+		  		<li role="presentation" <#if menuurl?contains('/videoPic/videoList')>class="bg-warning"</#if>>
+		  			<a href="/videoPic/videoList">权限管理</a>
+		  		</li>
 			</ul>
+	       	<ul class="nav nav-pills nav-stacked">
+		  		<li role="presentation" class="active"><a href="#">其他数据管理</a></li>
+		  		<li role="presentation" <#if menuurl?contains('/videoPic/videoList')>class="bg-warning"</#if>>
+		  			<a href="/videoPic/videoList">会话管理</a>
+		  		</li>
+			</ul>
+	        
         </div>
 		 
 	 

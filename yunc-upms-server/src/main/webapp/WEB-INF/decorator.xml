@@ -48,7 +48,7 @@
      	<pattern>*/forum/*</pattern>
         <pattern>*/usercenter/*</pattern>
         <pattern>/goods/xh</pattern>
-        <pattern>/user/index</pattern>
+        <pattern>/upmsUser/index</pattern>
         <pattern>/userBase/index</pattern>
         <pattern>/userBase/userAddedService</pattern>
         <pattern>/userAdded/*</pattern>

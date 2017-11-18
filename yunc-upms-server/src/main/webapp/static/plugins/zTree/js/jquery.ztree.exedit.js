@@ -1,6 +1,6 @@
 /*
- * JQuery zTree exedit v3.5.25
- * http://zTree.me/
+ * JQuery zTree exedit v3.5.30
+ * http://treejs.cn/
  *
  * Copyright (c) 2010 Hunter.z
  *
@@ -8,7 +8,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  *
  * email: hunter.z@263.net
- * Date: 2016-09-27
+ * Date: 2017-11-11
  */
 (function($){
 	//default consts of exedit
@@ -624,7 +624,7 @@
 				doc.unbind("mousemove", _docMouseMove);
 				doc.unbind("mouseup", _docMouseUp);
 				doc.unbind("selectstart", _docSelect);
-				body.css("cursor", "auto");
+				body.css("cursor", "");
 				if (tmpTarget) {
 					tmpTarget.removeClass(consts.node.TMPTARGET_TREE);
 					if (tmpTargetNodeId) $("#" + tmpTargetNodeId + consts.id.A, tmpTarget).removeClass(consts.node.TMPTARGET_NODE + "_" + consts.move.TYPE_PREV)
@@ -692,7 +692,7 @@
 						view.selectNodes(targetSetting, newNodes);
 
 						var a = $$(newNodes[0], setting).get(0);
-						view.scrollIntoView(a);
+						view.scrollIntoView(setting, a);
 
 						setting.treeObj.trigger(consts.event.DROP, [event, targetSetting.treeId, newNodes, dragTargetNode, moveType, isCopy]);
 					}
