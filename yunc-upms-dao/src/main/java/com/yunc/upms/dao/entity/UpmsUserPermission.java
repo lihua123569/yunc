@@ -2,11 +2,12 @@ package com.yunc.upms.dao.entity;
 
 import java.io.Serializable;
 
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
+import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
-import java.io.Serializable;
+import com.yunc.upms.common.converter.ModelValueSerializer;
 
 /**
  * <p>
@@ -49,7 +50,7 @@ public class UpmsUserPermission extends Model<UpmsUserPermission> {
 	public void setUserPermissionId(Integer userPermissionId) {
 		this.userPermissionId = userPermissionId;
 	}
-
+	@JSONField(serializeUsing = ModelValueSerializer.class)
 	public Long getUserId() {
 		return userId;
 	}

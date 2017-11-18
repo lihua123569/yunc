@@ -2,11 +2,12 @@ package com.yunc.upms.dao.entity;
 
 import java.io.Serializable;
 
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
+import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
-import java.io.Serializable;
+import com.yunc.upms.common.converter.ModelValueSerializer;
 
 /**
  * <p>
@@ -45,7 +46,7 @@ public class UpmsUserOrganization extends Model<UpmsUserOrganization> {
 	public void setUserOrganizationId(Integer userOrganizationId) {
 		this.userOrganizationId = userOrganizationId;
 	}
-
+	@JSONField(serializeUsing = ModelValueSerializer.class)
 	public Long getUserId() {
 		return userId;
 	}

@@ -2,10 +2,12 @@ package com.yunc.upms.dao.entity;
 
 import java.io.Serializable;
 
-import com.baomidou.mybatisplus.annotations.TableId;
+import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.enums.IdType;
+import com.yunc.upms.common.converter.ModelValueSerializer;
 
 /**
  * <p>
@@ -23,7 +25,7 @@ public class UpmsUser extends Model<UpmsUser> {
     /**
      * 用户id：编号
      */
-    @TableId("user_id")
+    @TableId(value="user_id", type=IdType.ID_WORKER)
 	private Long userId;
     /**
      * 帐号
@@ -66,7 +68,7 @@ public class UpmsUser extends Model<UpmsUser> {
      */
 	private Long ctime;
 
-
+	@JSONField(serializeUsing = ModelValueSerializer.class)
 	public Long getUserId() {
 		return userId;
 	}
