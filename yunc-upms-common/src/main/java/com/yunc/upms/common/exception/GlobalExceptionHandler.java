@@ -24,6 +24,9 @@ public class GlobalExceptionHandler {
     @ResponseBody //在返回自定义相应类的情况下必须有，这是@ControllerAdvice注解的规定
     public String exceptionHandler(Exception ex, HttpServletResponse response) {
     	   
+    	
+    	response.setContentType("application/json;charset=UTF-8");//防止数据传递乱码
+    	
         String code;
         
         String message;
@@ -47,7 +50,7 @@ public class GlobalExceptionHandler {
             LOGGER.error("unknown exception occoured",ex);
             
             code = "9999";
-            
+            //程序内部错误，这里会显示乱码
             message = "服务器繁忙，请稍后再试~";
         }
         
