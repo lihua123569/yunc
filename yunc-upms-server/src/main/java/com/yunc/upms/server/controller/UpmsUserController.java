@@ -8,7 +8,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,6 +54,29 @@ public class UpmsUserController extends BaseController{
 	  @RequestMapping(value="/index",method=RequestMethod.GET)  
 	  public String index(HttpServletRequest request,HttpServletResponse response,Map<String, Object> map){
 		  return "/user/index";
+	  } 
+	  
+	  /**
+	   * 用户首页
+	   * @param request
+	   * @param m
+	   * @return
+	   */ 
+	  @RequestMapping(value="/login",method=RequestMethod.GET)  
+	  public String login(HttpServletRequest request,HttpServletResponse response,Map<String, Object> map){
+		  return "/app/login";
+	  } 
+	  /**
+	   * 用户首页
+	   * @param request
+	   * @param m
+	   * @return
+	   */ 
+	  @RequestMapping(value="/doLogin",method=RequestMethod.GET)  
+	  @ResponseBody
+	  public String doLogin(HttpSession httpSession,HttpServletRequest request,HttpServletResponse response,Map<String, Object> map){
+//			httpSession.setAttribute("user", upmsUserService.selectById(id));
+		  return "/app/login";
 	  } 
 	  
 	  /**
@@ -170,4 +195,55 @@ public class UpmsUserController extends BaseController{
 		}
 		
 	  
+		/**
+		 * <一句话功能简述>
+		 * <功能详细描述>
+		 * @param id
+		 * @return [参数说明]
+		 * 
+		 * @return Map<String,Object> [返回类型说明]
+		 * @exception throws [违例类型] [违例说明]
+		 * @see [类、类#方法、类#成员]
+		 */
+		@RequestMapping(value="/json/login")
+		@ResponseBody
+		public Map<String,Object> login(String id,Map<String, Object> resMap,HttpSession httpSession,HttpServletRequest request,HttpServletResponse response){
+			
+			resMap = ResultHandle.success();
+			httpSession.setAttribute("user", upmsUserService.selectById(id));
+			return resMap;
+		}
+		@RequestMapping(value="/json/doLogin" , produces="text/html;charset=UTF-8" )
+		@ResponseBody
+		public  Map<String, Object> doLogin(UpmsUser upmsUser, HttpServletRequest request,
+					HttpSession httpSession) {
+			LOGGER.info("enter api/doLogin upmsUser:{}",upmsUser);
+			Map<String, Object> resMap = ResultHandle.success();
+			String returnUrl = request.getParameter("ReturnURL");
+			//校验参数
+			AssertUtils.isNotNull(upmsUser.getUsername(),ErrorCodeEnum.ILLEGAL_ARGUMENT);
+			AssertUtils.isNotBlank(upmsUser.getPassword(),ErrorCodeEnum.ILLEGAL_ARGUMENT);
+			
+			UpmsUser u = upmsUserService.login(upmsUser);
+			httpSession.setAttribute("user", u);
+			httpSession.setAttribute("name", u.getUsername());
+			resMap.put("info", u);
+			returnUrl = StringUtils.isEmpty(returnUrl)?"/user/index":returnUrl;
+			resMap.put("object", returnUrl);
+			LOGGER.info("exsit api/doLogin resMap:{}",JSONUtil.toJsonStr(resMap));
+			return resMap;
+		}
+		
+		/**
+		 * 退出
+		 */
+		@RequestMapping("/logout")
+		public String logout(HttpServletRequest request,HttpServletResponse response,HttpSession httpSession) {
+			
+			if(httpSession.getAttribute("user")!=null){
+				httpSession.removeAttribute("user");
+			}
+			return "redirect:/upmsUser/login";
+		}
+	 
 }

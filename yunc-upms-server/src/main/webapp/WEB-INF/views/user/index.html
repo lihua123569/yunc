@@ -24,12 +24,27 @@
 		function getNodes2(){
 			 $('#ztreeModal').modal({backdrop: false, keyboard: true});
 		};
+		function login(){
+			$.ajax({
+				type: 'POST',
+				url:"/upmsUser/json/login?id=931412684158251009",
+				async: false,
+				success:function(result){
+					if(result.responseCode =="0000"){
+						Alert("提醒",result.responseMsg,false);
+					}
+					
+		    }});
+			
+			
+		};
 		
 	</SCRIPT>
 </head>
 <body>
  <h2 class="tit">用户管理</h2>
  <button id="getNodes" onclick="getNodes2()">getNodes</button>
+ <a id="login" onclick="login()">login</a>
  <div class="form-inline">
   <div class="form-group">
     <label class="sr-only" for="exampleInputEmail3">用户名</label>

@@ -70,7 +70,7 @@ var demo=$(".login-form").Validform({
 $(".login-btn-a").click(function(){
 	var check = demo.check();
 	if(check){
-		submit("/user/json/doLogin");
+		submit("/upmsUser/json/doLogin");
 	}
 	return false;
 });
@@ -104,7 +104,7 @@ function submit(url){
 	$.ajax({
 		type:'POST',
 		url: url,//手机号是否存在
-		data: {"name":$("#userName").val(),"password":$("#password").val(),"ReturnURL":GetQueryString("ReturnURL")},
+		data: {"username":$("#userName").val(),"password":$("#password").val(),"ReturnURL":GetQueryString("ReturnURL")},
 		dataType: 'json',
 		success: function(data){
 			if(data.responseCode=="0000"){

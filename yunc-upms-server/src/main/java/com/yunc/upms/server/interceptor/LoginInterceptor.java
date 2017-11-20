@@ -10,6 +10,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler;
 
+import com.yunc.upms.dao.entity.UpmsUser;
+
 
 public class LoginInterceptor implements HandlerInterceptor {
 
@@ -31,12 +33,11 @@ public class LoginInterceptor implements HandlerInterceptor {
 			 
 		 }
 		 
-//		User u = (User) request.getSession().getAttribute("user");
-//		 if(u==null || !"adminApp".equals(u.getName())){
-//			 response.sendRedirect("/login/login?ReturnURL="+request.getServletPath());
-////			 request.getRequestDispatcher("/login/login?ReturnURL="+request.getServletPath()).forward(request, response);
-//			 return false;
-//		 } 
+		UpmsUser u = (UpmsUser) request.getSession().getAttribute("user");
+		 if(u==null ){
+			 response.sendRedirect("/upmsUser/login?ReturnURL="+request.getServletPath());
+			 return false;
+		 } 
 		
 		log.info(_log);
 		return true;

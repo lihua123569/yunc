@@ -39,6 +39,7 @@
     </decorator>
 
     <decorator name="usercenter" page="decorators/userCenter.html">
+     	<pattern>/websocket/*</pattern>
      	<pattern>/upload/*</pattern>
      	<pattern>/userComment/*</pattern>
      	<pattern>*/videoPic/*</pattern>

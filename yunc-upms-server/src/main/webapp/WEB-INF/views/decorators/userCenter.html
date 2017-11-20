@@ -61,6 +61,9 @@ ${head}
 		  		<li role="presentation" <#if menuurl?contains('/videoPic/videoList')>class="bg-warning"</#if>>
 		  			<a href="/videoPic/videoList">会话管理</a>
 		  		</li>
+		  		<li role="presentation" <#if menuurl?contains('/websocket/websocket2')>class="bg-warning"</#if>>
+		  			<a href="/websocket/websocket2?id=${user.userId}">聊天管理</a>
+		  		</li>
 			</ul>
 	        
         </div>

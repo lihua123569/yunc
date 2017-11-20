@@ -15,7 +15,6 @@
  -->
 	<context:component-scan base-package="com.yunc.upms" />
 	
-	 
 <!-- controller返回json str及中国乱码问题 -->
  <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">
@@ -102,7 +101,10 @@
    		<mvc:interceptor>
 			<mvc:mapping path="/**" />
             <mvc:exclude-mapping path="/login/login"/>
-            <mvc:exclude-mapping path="/user/json/doLogin"/>
+            <mvc:exclude-mapping path="/upmsUser/login"/>
+            <mvc:exclude-mapping path="/websocket"/>
+            <mvc:exclude-mapping path="/websocket/socketjs"/>
+            <mvc:exclude-mapping path="/upmsUser/json/doLogin"/>
             <mvc:exclude-mapping path="/*/api/*"/>
         	<bean class="com.yunc.upms.server.interceptor.LoginInterceptor"/>
 		</mvc:interceptor>
