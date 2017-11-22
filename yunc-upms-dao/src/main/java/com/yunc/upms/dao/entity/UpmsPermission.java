@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
 
 /**
@@ -21,7 +23,7 @@ public class UpmsPermission extends Model<UpmsPermission> {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId("permission_id")
+    @TableId(value="permission_id", type=IdType.AUTO)
 	private Integer permissionId;
     /**
      * 所属系统

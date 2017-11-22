@@ -82,15 +82,6 @@
 
 	<SCRIPT type="text/javascript">
 		var setting = {
-			/* async : {
-				enable : true,
-				url : "/upmsPermission/json/lists",
-				autoParam : [ "id=1" ],
-				otherParam : {
-					"chk" : "chk"
-				},
-				dataFilter : dataFilter 
-			}, */
 			check : {
 				enable : true,
 				autoCheckTrigger : true,
@@ -99,63 +90,32 @@
 					"Y" : "p",
 					"N" : "s"
 				}
-			}/* ,
+			},
 			data : {
 				simpleData : {
-					enable : true
-				}
-			},
-			callback : {
-				onCheck : onCheck,
-				onAsyncSuccess : onAsyncSuccess
-			} */
-		};
-		/* function dataFilter(treeId, parentNode, childNodes) {
-			if (parentNode.checkedEx === true) {
-				for (var i = 0, l = childNodes.length; i < l; i++) {
-					childNodes[i].checked = parentNode.checked;
-					childNodes[i].halfCheck = false;
-					childNodes[i].checkedEx = true;
+					enable : true,
+					idKey : "permissionId",
+					pIdKey : "pid",
+					rootPId : 0
 				}
 			}
-			return childNodes.info;
-		}
-		function onCheck(event, treeId, treeNode) {
-			cancelHalf(treeNode)
-			treeNode.checkedEx = true;
-		}
-		function onAsyncSuccess(event, treeId, treeNode, msg) {
-			cancelHalf(treeNode);
-		}
-		function cancelHalf(treeNode) {
-			if (treeNode.checkedEx)
-				return;
-			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-			treeNode.halfCheck = false;
-			zTree.updateNode(treeNode);
-		}
- */
-		var zNodes = [ {
-			id : 1,
-			pId : 0,
-			name : "权限管理系统",
-			halfCheck : true,
-			isParent : true
-		} ];
- 
- 		
- 		$.ajax({
- 			type: 'POST',
- 			url:"/upmsPermission/json/lists",
- 			async: false,
- 			success:function(result){
- 				if(result.responseCode =="0000"){
- 					zNodes = result.info;
- 				}
- 				
- 	    }});
- 		
- 		var treeObj;
+
+		};
+
+		var zNodes;
+		$.ajax({
+			type : 'POST',
+			url : "/upmsPermission/json/ztreeList",
+			async : false,
+			success : function(result) {
+				if (result.responseCode == "0000") {
+					zNodes = result.info;
+				}
+
+			}
+		});
+
+		var treeObj;
 		$(document).ready(function() {
 			treeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
 			treeObj.expandAll(true);
@@ -164,14 +124,11 @@
 		function getNodes() {
 			var nodes = treeObj.getChangeCheckedNodes();
 			$.each(nodes, function(i, item) {
-				alert("name:" + item.name + "id:" + item.id + "pid:" + item.pid
-						+ "checked:" + item.checked);
+				alert("name:" + item.name + "___id:" + item.permissionId + "___pid:" + item.pid
+						+ "___checked:" + item.checked);
 
 			});
 		};
-		
-		 
-	
 	</SCRIPT>
 	<div class="modal fade" id="ztreeModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel">
@@ -192,7 +149,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary" onclick="update()">提交</button>
+					<button type="button" class="btn btn-primary" onclick="ztreeUpdate()">提交</button>
 				</div>
 			</div>
 		</div>

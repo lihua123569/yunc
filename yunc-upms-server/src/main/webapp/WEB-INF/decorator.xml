@@ -29,8 +29,8 @@
 
 
     <decorator name="user" page="decorators/decoratorUser.html">
-        <pattern>/login/login</pattern>
-        <pattern>/login/register</pattern>
+        <pattern>/upmsUser/login</pattern>
+        <pattern>/upmsUser/register</pattern>
     </decorator>
 
     <decorator name="nofooter" page="decorators/decoratorNoFooter.html">
@@ -41,28 +41,12 @@
     <decorator name="usercenter" page="decorators/userCenter.html">
      	<pattern>/websocket/*</pattern>
      	<pattern>/upload/*</pattern>
-     	<pattern>/userComment/*</pattern>
-     	<pattern>*/videoPic/*</pattern>
-     	<pattern>*/pic/*</pattern>
-     	<pattern>*/guanggao/*</pattern>
-     	<pattern>*/jiugongge/*</pattern>
-     	<pattern>*/forum/*</pattern>
         <pattern>*/usercenter/*</pattern>
-        <pattern>/goods/xh</pattern>
         <pattern>/upmsUser/index</pattern>
-        <pattern>/userBase/index</pattern>
-        <pattern>/userBase/userAddedService</pattern>
+        <pattern>/upmsPermission/*</pattern>
         <pattern>/userAdded/*</pattern>
-        <pattern>*/changeMobilePhoneOne</pattern>
-        <pattern>*/changeMobilePhoneTwo</pattern>
         <pattern>*/modifyPassword</pattern>
         <pattern>*/realAuth/*</pattern>
-        <pattern>*/resetPassword</pattern>
-        <pattern>*/sellerBlackList</pattern>
-        <pattern>*/setPayPassword</pattern>
-        <pattern>*/setPayPasswordSuccess</pattern>
-        <pattern>*/finance/details</pattern>
-        <pattern>*/withdraw/details</pattern>
     </decorator>
 </decorators>
 

@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
 
 /**
@@ -24,7 +26,7 @@ public class UpmsLog extends Model<UpmsLog> {
     /**
      * 编号
      */
-    @TableId("log_id")
+    @TableId(value="log_id", type=IdType.ID_WORKER)
 	private Integer logId;
 	private String description;
     /**

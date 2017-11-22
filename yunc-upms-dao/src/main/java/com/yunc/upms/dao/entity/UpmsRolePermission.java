@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
 
 /**
@@ -24,7 +26,7 @@ public class UpmsRolePermission extends Model<UpmsRolePermission> {
     /**
      * 角色权限中间表id：编号
      */
-    @TableId("role_permission_id")
+    @TableId(value="role_permission_id", type=IdType.AUTO)
 	private Integer rolePermissionId;
     /**
      * 角色id：角色编号

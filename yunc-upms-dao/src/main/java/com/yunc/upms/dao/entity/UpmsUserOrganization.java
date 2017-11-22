@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 import com.yunc.upms.common.converter.ModelValueSerializer;
 
 /**
@@ -25,7 +26,7 @@ public class UpmsUserOrganization extends Model<UpmsUserOrganization> {
     /**
      * 用户组织中间表id：编号
      */
-    @TableId("user_organization_id")
+    @TableId(value="user_organization_id", type=IdType.AUTO)
 	private Integer userOrganizationId;
     /**
      * 用户id：用户编号
