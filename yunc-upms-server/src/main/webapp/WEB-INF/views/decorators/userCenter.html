@@ -10,12 +10,17 @@
 <link type="text/css" rel="stylesheet" href="/static/plugins/bootstrap/css/bootstrap.css" />
 <link rel="stylesheet" type="text/css"	href="/static/js/upload/webuploader.css" />
 <link type="text/css" rel="stylesheet" href="http://img.uhaozu.com/zuhao/css/per-center.css" />
+<!-- 阿里icon -->
+<link type="text/css" rel="stylesheet" href="http://at.alicdn.com/t/font_483300_8eb99o3s8gqlg14i.css" />
 <!-- <link type="text/css" rel="stylesheet" href="/static/js/upload/style.css" /> -->
 
 <script type="text/javascript" src="/static/js/jquery-2.1.1.js"></script>
+
 <!-- <script type="text/javascript" src="/static/js/upload/webuploader.js"></script> -->
 <script type="text/javascript" src="/static/js/webuploader.js"></script>
 <script type="text/javascript" src="/static/plugins/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="/static/plugins/nice-validator-1.1.2/dist/jquery.validator.js?local=zh-CN"></script>
+	
 <script type="text/javascript" src="http://img.uhaozu.com/zuhao/common/common.js"></script>
 	<!-- <script type="text/javascript" src="/static/js/upload/uploadImg.js"></script> -->
 <script type="text/javascript" src="/static/js/common.js"></script>
@@ -35,10 +40,10 @@ ${head}
 	       	<ul class="nav nav-pills nav-stacked">
 		  		<li role="presentation" class="active"><a href="#">系统组织管理</a></li>
 		  		<li role="presentation" <#if menuurl?contains('/videoPic/videoList')>class="bg-warning"</#if>>
-		  			<a href="/videoPic/videoList">系统管理</a>
+		  			<a href="/upmsSystem/index">系统管理</a>
 		  		</li>
 		  		<li role="presentation" <#if menuurl?contains('/videoPic/videoList')>class="bg-warning"</#if>>
-		  			<a href="/videoPic/videoList">组织管理</a>
+		  			<a href="/upmsOrganization/index">组织管理</a>
 		  		</li>
 			</ul>
 	       	<ul class="nav nav-pills nav-stacked">

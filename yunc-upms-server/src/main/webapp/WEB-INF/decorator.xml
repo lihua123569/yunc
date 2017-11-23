@@ -42,8 +42,18 @@
      	<pattern>/websocket/*</pattern>
      	<pattern>/upload/*</pattern>
         <pattern>*/usercenter/*</pattern>
+        
         <pattern>/upmsUser/index</pattern>
         <pattern>/upmsPermission/*</pattern>
+        <pattern>/upmsSystem/*</pattern>
+        <pattern>/chat/*</pattern>
+		<pattern>/upmsLog/*</pattern>
+		<pattern>/upmsOrganization/*</pattern>
+		<pattern>/upmsRole/*</pattern>
+		<pattern>/UpmsRolePermission/*</pattern>
+		<pattern>/upmsUserOrganization/*</pattern>
+		<pattern>/upmsUserPermission/*</pattern>
+		<pattern>/upmsUserRole/*</pattern>
         <pattern>/userAdded/*</pattern>
         <pattern>*/modifyPassword</pattern>
         <pattern>*/realAuth/*</pattern>

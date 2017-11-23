@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -78,12 +79,12 @@ public class UpmsPermissionController extends BaseController {
 		 * @param m
 		 * @return
 		 */ 
-		@RequestMapping(value="/json/update",method=RequestMethod.GET) 
+		@RequestMapping(value="/json/update/{id}",method=RequestMethod.GET) 
 		@ResponseBody
-		public  Map<String, Object>  update(Long userId,Map<String, Object> resMap){
-			LOGGER.info("enter create userId:{}",userId);
+		public  Map<String, Object>  update(@PathVariable("id") int id,Map<String, Object> resMap){
+			LOGGER.info("enter create id:{}",id);
 			resMap = ResultHandle.success();
-			resMap.put("info", upmsPermissionService.selectById(userId));
+			resMap.put("info", upmsPermissionService.selectById(id));
 			LOGGER.info("exsit update resMap:{}",JSONUtil.toJsonStr(resMap));
 	    	return resMap;
 		} 
