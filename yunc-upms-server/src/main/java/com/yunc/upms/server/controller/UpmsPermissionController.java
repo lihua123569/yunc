@@ -56,7 +56,7 @@ public class UpmsPermissionController extends BaseController {
 	  
 	  
 	  /**
-	   * 新增用户
+	   * 新增权限
 	   * @param request
 	   * @param m
 	   * @return
@@ -159,6 +159,23 @@ public class UpmsPermissionController extends BaseController {
 		 
 		resMap.put("info", upmsPermissionService.selectList(ew));
 		 
+		return resMap;
+	}
+	
+	/**
+	 * 删除数据
+	 * 
+	 * @param request
+	 * @param m
+	 * @return
+	 */
+	@RequestMapping(value = "/json/delete", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> delete(Integer id, Map<String, Object> resMap) {
+		LOGGER.info("enter delete id:{}", id);
+		resMap = ResultHandle.success();
+		AssertUtils.isTrue(upmsPermissionService.deleteById(id), ErrorCodeEnum.SYSTEM_ERROR);
+		LOGGER.info("exsit delete resMap:{}", JSONUtil.toJsonStr(resMap));
 		return resMap;
 	}
 }
