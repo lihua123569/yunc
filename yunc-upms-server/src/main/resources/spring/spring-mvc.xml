@@ -97,7 +97,7 @@
 			<value>4096</value>
 		</property>
 	</bean>
-	<mvc:interceptors>
+<!-- 	<mvc:interceptors>
    		<mvc:interceptor>
 			<mvc:mapping path="/**" />
             <mvc:exclude-mapping path="/login/login"/>
@@ -108,5 +108,5 @@
             <mvc:exclude-mapping path="/*/api/*"/>
         	<bean class="com.yunc.upms.server.interceptor.LoginInterceptor"/>
 		</mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors> -->
 </beans>  

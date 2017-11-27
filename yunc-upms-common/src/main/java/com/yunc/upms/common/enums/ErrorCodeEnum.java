@@ -6,7 +6,10 @@ import com.liebao.lb7881.common.enums.IErrorCodeEnum;
  * @author Administrator
  */
 public enum ErrorCodeEnum implements IErrorCodeEnum {
-
+	/**
+	 * 已经登录
+	 */
+	LOGINED("1016", "已经登录"),
 	/**
 	 * 未设置密保问题
 	 */

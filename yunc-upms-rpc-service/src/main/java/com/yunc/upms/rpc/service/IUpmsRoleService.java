@@ -1,7 +1,9 @@
 package com.yunc.upms.rpc.service;
 
-import com.yunc.upms.dao.entity.UpmsRole;
+import java.util.List;
+
 import com.baomidou.mybatisplus.service.IService;
+import com.yunc.upms.dao.entity.UpmsRole;
 
 /**
  * <p>
@@ -12,5 +14,5 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2017-11-15
  */
 public interface IUpmsRoleService extends IService<UpmsRole> {
-	
+	List<UpmsRole> selectUpmsRoleByUpmsUserId(Long userId );
 }
